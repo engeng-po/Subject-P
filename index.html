@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Subject 1</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Platform C.A. — Fixed</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+/* =============== RESET & ROOT =============== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --accent: #c9a07a;
+  --muted: #e8d5c3;
+  --bg: #121010;
+  --card: rgba(255,255,255,0.04);
+  --paper-texture: url("https://i.imgur.com/2VQ3T3R.png");
+}
+body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--muted); line-height:1.5; }
+.topbar{ display:flex; justify-content:space-between; align-items:center; padding:12px 22px; position:sticky; top:0; z-index:30; background:linear-gradient(180deg, rgba(0,0,0,0.18), transparent); }
+.brand{ font-weight:700; letter-spacing:1px; }
+.wrap{ display:grid; grid-template-columns: 28% 42% 30%; gap:20px; padding:20px; min-height:calc(100vh - 68px); }
+.col{ border-radius:12px; }
+.left-col{ background: linear-gradient(180deg,#2b221b,#2f261f); padding:26px; display:flex; flex-direction:column; gap:20px; }
+.welcome{ font-weight:700; }
+.note{ opacity:.8; font-size:.92rem; }
+.main-title{ font-family:'Playfair Display', serif; font-size:2.2rem; color:#fff; line-height:1.05; }
+.script{ color:var(--accent); font-size:2.8rem; font-weight:800; }
+.cta-buttons{ display:flex; gap:10px; }
+.btn{ background:var(--accent); color:#111; border:none; padding:10px 14px; border-radius:8px; font-weight:700; cursor:pointer; }
+.btn.outline{ background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.07); }
+.round-image img{ width:170px; height:170px; object-fit:cover; border-radius:999px; box-shadow:0 10px 30px rgba(0,0,0,.5); }
+.center-col{ background: linear-gradient(180deg,#1a130d,#1c150f); padding:20px; overflow-y:auto; }
+.illustration img{ width:100%; height:320px; object-fit:cover; border-radius:12px; }
+.posts-header{ display:flex; justify-content:space-between; align-items:center; margin:16px 0; }
+.small-btn{ background:var(--accent); padding:6px 12px; border-radius:8px; border:none; color:#111; }
+.posts-grid{ column-count:3; column-gap:1.4rem; width:100%; padding-top:1rem; }
+@media(max-width:900px){ .posts-grid{ column-count:2; } }
+@media(max-width:600px){ .posts-grid{ column-count:1; } }
+.post-card{ break-inside:avoid; margin-bottom:1.4rem; background:var(--card); border-radius:12px; padding:12px; border:1px solid rgba(255,255,255,0.04); box-shadow:0 8px 26px rgba(0,0,0,0.45); transition:transform .18s ease, box-shadow .18s ease; }
+.post-card:hover{ transform:translateY(-5px); box-shadow:0 12px 32px rgba(0,0,0,0.55); }
+.post-card img{ width:100%; border-radius:10px; margin-bottom:.7rem; }
+.post-card p{ font-size:.95rem; line-height:1.45rem; color:var(--muted); white-space:pre-wrap; }
+.post-time{ font-size:.78rem; color:#aaa; margin-top:.4rem; text-align:right; display:block; }
+.right-col{ background: linear-gradient(180deg,#1a130d,#1c150f); padding:20px; display:flex; flex-direction:column; justify-content:space-between; }
+.panel{ background: rgba(255,255,255,0.03); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); }
+.grid-profiles{ display:grid; grid-template-columns: repeat(2,1fr); gap:12px; }
+.profile{ text-align:center; cursor:pointer; }
+.profile img{ width:70px; height:70px; border-radius:12px; object-fit:cover; transition:.18s; }
+.profile:hover img{ transform:scale(1.06); }
+.polaroid-label{ margin-top:6px; font-size:.9rem; }
+.author-pinboard{ display:none; margin-top:18px; column-width:260px; column-gap:18px; padding-top:6px; }
+.pin-card{ break-inside:avoid; padding:16px; border-radius:8px; margin-bottom:22px; border:1px solid rgba(0,0,0,0.15); background:#fffdf7; background-image:var(--paper-texture); background-size:cover; box-shadow:0 2px 4px rgba(0,0,0,0.25),0 6px 18px rgba(0,0,0,0.15) inset,0 -4px 6px rgba(255,255,255,0.6) inset; transform:rotate(-1.5deg); position:relative; transition:.25s ease; }
+.pin-card:hover{ transform:rotate(0deg) scale(1.02); box-shadow:0 4px 8px rgba(0,0,0,0.35),0 0 0 rgba(0,0,0,0.15) inset; }
+.pin-card::before{ content:""; position:absolute; top:-14px; left:50%; transform:translateX(-50%) rotate(2deg); width:70px; height:28px; background: rgba(255,255,204,0.75); border-radius:4px; box-shadow:0 2px 6px rgba(0,0,0,0.12); }
+.pin-card img{ width:100%; border-radius:8px; }
+.pin-card, .pin-card .pin-title, .pin-card .pin-text{ font-family: 'Patrick Hand', cursive !important; color:#3a2f26; letter-spacing:.35px; font-size:1.05rem; }
+.pinboard-mina{ background:#fff7e6; }
+.pin-title{ font-weight:700; margin-bottom:6px; }
+.pin-text{ white-space:pre-wrap; }
+.modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:3000; }
+.modal{ background:#1e1a16; color:var(--muted); padding:18px; border-radius:10px; width:360px; border:1px solid rgba(255,255,255,0.06); }
+.modal textarea, .modal input{ width:100%; margin-top:8px; padding:8px; border-radius:6px; border:none; background:#2b2622; color:var(--muted); }
+.profile-modal{ position:fixed; inset:0; background:rgba(0,0,0,0.7); display:none; align-items:center; justify-content:center; z-index:5000; }
+.profile-modal .modal-content{ background:#fff; color:#111; padding:18px; border-radius:10px; width:420px; }
+.close-x{ position:absolute; right:12px; top:6px; background:none; border:none; font-size:20px; cursor:pointer; }
+@media (max-width:900px){ .wrap{ grid-template-columns:1fr; padding:12px; } .round-image img{ width:120px; height:120px; } .posts-grid{ column-count:1 !important; } .author-pinboard{ column-width:100%; } }
+/* MINA PANEL (unified intro + tabs) */
+.mina-panel { background: rgba(255,255,255,0.02); padding:22px; border-radius:12px; margin-top:18px; }
+.mina-title{ font-family: 'Playfair Display', serif; font-size:1.6rem; color:var(--accent); margin-bottom:10px; }
+.mina-content p{ color:var(--muted); margin-bottom:12px; }
+/* Tabs styling */
+.tabs { display:flex; gap:8px; margin:14px 0 18px 0; flex-wrap:wrap; }
+.tab-btn { padding:8px 12px; border-radius:8px; border:1px solid rgba(201,160,122,0.25); background:transparent; color:var(--muted); cursor:pointer; }
+.tab-btn.active { background:var(--accent); color:#111; font-weight:700; }
+.tab-content { display:none; padding:12px 0; border-top:1px solid rgba(255,255,255,0.03); }
+.tab-content.active { display:block; }
+.back-btn { margin-top:16px; }
+</style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="brand">Platform C.A.</div>
+    <div id="authArea" class="auth-area"></div>
+  </header>
+
+  <div class="wrap">
+
+    <!-- LEFT COLUMN -->
+    <aside class="col left-col">
+
+      <div class="top-banner">
+        <div class="welcome">WELCOME</div>
+        <div class="note">"The dark side of human nature is something that we have to be prepared to confront on a daily basis."</div>
+      </div>
+
+      <h1 class="main-title">FEATURED<br/><span class="script">Platform</span></h1>
+
+      <div class="cta">
+        <p class="cta-text">SUBMIT YOUR POST<br/>TO BE FEATURED</p>
+        <div class="cta-buttons">
+          <button class="btn outline" id="howBtn">How it works</button>
+          <button class="btn" id="submitBtn">Submit Post</button>
+        </div>
+      </div>
+
+      <div class="round-image">
+        <img src="https://picsum.photos/400?random=10" alt="preview">
+      </div>
+
+    </aside>
+
+    <!-- CENTER COLUMN -->
+    <main class="col center-col">
+
+      <div class="illustration">
+        <img src="https://picsum.photos/500?blur=1" alt="library">
+      </div>
+
+      <section class="posts-section">
+
+        <div class="posts-header">
+          <h3 id="postsTitle">Featured Posts</h3>
+
+          <div class="posts-controls">
+            <button class="small-btn" id="showAll">All</button>
+            <span class="hint">Click profile icons to filter</span>
+          </div>
+        </div>
+
+        <!-- MAIN FEED -->
+        <div id="postsGrid" class="posts-grid" aria-live="polite"></div>
+
+        <!-- MINA PANEL (UNIFIED: intro + tabs) -->
+        <div id="minaPanelUnified" class="mina-panel" aria-hidden="true" style="display:none;">
+
+          <h2 class="mina-title">The Internal Architecture of the Mind</h2>
+
+          <div class="mina-content">
+            <p>There are parts of the mind that never speak directly. They move beneath awareness, shaping reactions long before we can name them. Mina works within that space — the quiet interior where emotion becomes pattern, and pattern becomes identity.</p>
+            <p>Most people assume the mind breaks suddenly, like a snapped branch. But it rarely happens that way. The mind erodes slowly: through unspoken fears, unresolved conflicts, internalized criticism, or the pressure to perform in roles never chosen. The psychological self doesn’t collapse; it <em>shifts</em>, rearranging the internal architecture just enough for the outside world to notice something is “different.”</p>
+            <p>Understanding this is not about diagnosing people — it’s about tracking the way a human spirit learns to survive pressure. Every defense mechanism, every instinct, every coping strategy once served a purpose. Mina’s perspective reminds us: no behavior emerges without a history, and no internal world forms without a narrative.</p>
+            <p>Healing begins not by erasing the past, but by learning how to carry it differently. The mind is not a battlefield to win — it’s a landscape to explore. And if you observe it carefully enough, you begin to see that every thought, even the painful ones, contains a message about who you were trying to become.</p>
+            <p>This is where transformation begins: not in strength, but in awareness.</p>
+          </div>
+
+          <!-- Tabs -->
+          <div class="tabs" role="tablist" aria-label="Mina tabs">
+            <button class="tab-btn" data-tab="tab-historical">Historical</button>
+            <button class="tab-btn" data-tab="tab-contemporary">Contemporary</button>
+            <button class="tab-btn" data-tab="tab-cases">Case Studies</button>
+            <button class="tab-btn" data-tab="tab-visuals">Visuals</button>
+            <button class="tab-btn" data-tab="tab-recommend">Recommendations</button>
+          </div>
+
+          <!-- TAB CONTENTS -->
+          <div class="tab-content" id="tab-historical">
+            <h4>2. Historical context: traditional uses of IST</h4>
+            <p>Holistic frameworks: Many Indigenous systems treat mental health as inseparable from physical, spiritual, family, and land relationships (e.g., Te Whare Tapa Whā in Aotearoa/New Zealand). These frameworks guided socialization, grief rituals, and healing across generations.</p>
+            <p>Community healing roles: Spiritual leaders and healers mediated distress via rituals, storytelling, communal ceremonies, and culturally specific practices that reinforced identity and social cohesion.</p>
+          </div>
+
+          <div class="tab-content" id="tab-contemporary">
+            <h4>3. Contemporary relevance</h4>
+            <p>Culturally adapted services and models: Many health systems now incorporate Indigenous models (e.g., Te Whare Tapa Whā; Aboriginal SEWB frameworks). These are used for assessment, prevention, and treatment programs alongside clinical care.</p>
+            <p>Community-controlled delivery: Indigenous community-controlled services deliver holistic mental-health programs showing stronger engagement and acceptability than top-down services.</p>
+          </div>
+
+          <div class="tab-content" id="tab-cases">
+            <h4>4. Case studies</h4>
+            <p><strong>Aotearoa / New Zealand —</strong> Te Whare Tapa Whā & He Ara Oranga: used to structure services and wellbeing assessments; influenced policy and community-led responses.</p>
+            <p><strong>Australia —</strong> Aboriginal SEWB and community-controlled services: integrate cultural programs with clinical care and show improved engagement.</p>
+            <p><strong>Philippines —</strong> local traditional healing and resilience: rituals and community caregiving sustaining wellbeing in indigenous groups.</p>
+          </div>
+
+          <div class="tab-content" id="tab-visuals">
+            <h4>5. Visual demonstration</h4>
+            <p>Suggested visuals: concentric-ring holistic model, clinical integration flowchart, timeline of traditional roles → colonial disruption → modern revival.</p>
+          </div>
+
+          <div class="tab-content" id="tab-recommend">
+            <h4>6. Recommendations</h4>
+            <p>Policy: recognize Indigenous models in national policy. Service design: co-design with communities and fund Indigenous-led organizations. Workforce: train Indigenous mental-health workers. Research: use culturally appropriate outcomes and involve community researchers.</p>
+            <p><strong>Quick roadmap (0–12 months)</strong>: stakeholder mapping, co-design pilot, launch & adapt, evaluate & scale.</p>
+          </div>
+
+          <button id="minaBack" class="btn outline back-btn">Back to Feed</button>
+        </div>
+
+        <!-- MINA PINBOARD (left hidden) -->
+        <div id="minaPinboard" class="author-pinboard" aria-hidden="true" style="display:none;"></div>
+
+      </section>
+    </main>
+
+    <!-- RIGHT COLUMN -->
+    <aside class="col right-col">
+
+      <div class="right-top">
+        <p class="small-title">Introduction</p>
+        <div class="panel about-panel">
+          <h4>What IST means in psychology</h4>
+          <p>Indigenous Socio-Psychological Technologies (IST) are culturally-rooted practices, beliefs, rituals, and social structures that communities use to preserve mental health, restore balance after distress, and maintain collective well-being.</p>
+        </div>
+      </div>
+
+      <!-- PROFILE GRID -->
+      <div class="profiles">
+        <h5>Platforms C.A.</h5>
+        <div class="grid-profiles">
+          <div class="profile" data-author="mina" role="button" tabindex="0">
+            <img src="https://picsum.photos/150?random=22" alt="Mina">
+            <span class="polaroid-label">Mina</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-bottom">
+        <div class="scripture">
+          <p>DEUTERONOMY 30:10 — If you obey the LORD your God, and keep his commands...</p>
+        </div>
+      </div>
+
+    </aside>
+
+  </div> <!-- /wrap -->
+
+  <!-- POST MODAL TEMPLATE -->
+  <template id="postFormTpl">
+    <div class="modal-overlay" id="postOverlay">
+      <div class="modal" role="dialog" aria-modal="true">
+        <h3>Create an anonymous note</h3>
+        <form id="postForm">
+          <label>Content
+            <textarea name="content" rows="5" required maxlength="600" placeholder="Write a short note..."></textarea>
+          </label>
+          <label>Optional Image URL
+            <input type="url" name="image" placeholder="https://... (optional)">
+          </label>
+          <div class="modal-actions">
+            <button type="submit" class="btn">Post Anonymously</button>
+            <button type="button" class="btn outline" id="cancelPost">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </template>
+
+<script>
+// ======= Basic JS: modals, feed rendering, tabs, mina panel toggles =======
+
+// Modal helpers (how & post)
+function cloneTemplate(id){ const tpl = document.getElementById(id); return tpl ? tpl.content.cloneNode(true) : null; }
+
+// How it works
+const howBtn = document.getElementById('howBtn');
+if(howBtn){ howBtn.addEventListener('click', ()=>{ const tpl = cloneTemplate('howItWorksTpl'); if(!tpl) return; document.body.appendChild(tpl); const overlay = document.getElementById('howOverlay'); const close = document.getElementById('closeHow'); if(close) close.addEventListener('click', ()=> overlay && overlay.remove()); }); }
+
+// Submit post modal
+const submitBtn = document.getElementById('submitBtn');
+if(submitBtn){ submitBtn.addEventListener('click', ()=>{ const tpl = cloneTemplate('postFormTpl'); if(!tpl) return; document.body.appendChild(tpl); const overlay = document.getElementById('postOverlay'); const form = document.getElementById('postForm'); const cancel = document.getElementById('cancelPost'); if(cancel) cancel.addEventListener('click', ()=>{ form.reset(); overlay && overlay.remove(); }); form.addEventListener('submit', async (e)=>{ e.preventDefault(); // In this fixed file we won't call Firestore; keep behavior local
+    const content = form.content.value.trim(); if(!content) return; // add to feed locally
+    addLocalPost({ content, image: '' }); form.reset(); overlay && overlay.remove(); }); }); }
+
+// Local feed storage (simple)
+const postsGrid = document.getElementById('postsGrid');
+let localPosts = [];
+function addLocalPost(post){ post.created = Date.now(); post.author = 'user'; localPosts.unshift(post); renderPosts(localPosts); }
+function renderPosts(posts){ postsGrid.innerHTML = ''; posts.forEach(p=>{ const card = document.createElement('div'); card.className = 'post-card'; card.innerHTML = `${p.image?`<img src="${p.image}">` : '' }<p>${escapeHtml(p.content)}</p><span class='post-time'>${new Date(p.created).toLocaleString()}</span>`; postsGrid.appendChild(card); }); }
+function escapeHtml(s){ return String(s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+// Initial sample posts
+localPosts = [ { content: 'Welcome to the feed — post anonymously using the button on the left.', image:'', created: Date.now() } ]; renderPosts(localPosts);
+
+// Mina panel controls
+const profileMina = document.querySelector('.profile[data-author="mina"]');
+const minaPanel = document.getElementById('minaPanelUnified');
+const minaBackBtn = document.getElementById('minaBack');
+
+if(profileMina){ profileMina.addEventListener('click', ()=>{ // show mina panel
+  document.getElementById('postsTitle').textContent = "Mina’s Mindspace";
+  postsGrid.style.display = 'none';
+  minaPanel.style.display = 'block';
+  // activate first tab by default
+  activateTabButton(document.querySelector('.tab-btn[data-tab="tab-historical"]'));
+}); profileMina.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') profileMina.click(); }); }
+
+if(minaBackBtn){ minaBackBtn.addEventListener('click', ()=>{ minaPanel.style.display = 'none'; postsGrid.style.display = 'block'; document.getElementById('postsTitle').textContent = 'Featured Posts'; }); }
+
+// Tab logic
+function activateTabButton(btn){ if(!btn) return; document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active')); btn.classList.add('active'); const id = btn.dataset.tab; const el = document.getElementById(id); if(el) el.classList.add('active'); }
+
+document.addEventListener('click', (e)=>{ if(e.target.classList && e.target.classList.contains('tab-btn')){ activateTabButton(e.target); } });
+
+// Show All button returns to feed
+const showAll = document.getElementById('showAll'); if(showAll){ showAll.addEventListener('click', ()=>{ minaPanel.style.display = 'none'; postsGrid.style.display = 'block'; document.getElementById('postsTitle').textContent = 'Featured Posts'; }); }
+
+</script>
+</body>
+</html>
+    <script type="module" src="./script.js"></script>
+
+  </body>
+  
+</html>
